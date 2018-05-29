@@ -42,7 +42,7 @@ class App extends Component {
       <div>
         <button onClick={this.onOpenModal}>Open modal</button>
         <Modal open={open} onClose={this.onCloseModal} center>
-          <Scrollable style={styles.root}>
+          {/* <Scrollable style={styles.root}> */}
             <h1>random text</h1>
             <h1>random text</h1>
             <h1>random text</h1>
@@ -65,7 +65,7 @@ class App extends Component {
             <h1>random text</h1>
             <h1>random text</h1>
             <h1>random text</h1>
-          </Scrollable>
+          {/* </Scrollable> */}
           <BottomBar style={styles.bar}/>
         </Modal>
       </div>
