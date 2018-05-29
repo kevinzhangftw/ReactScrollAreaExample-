@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Modal from 'react-responsive-modal'
+
 import Scrollable from '../src/utilities/ScrollWrapper'
 import BottomBar from './components/BottomBar'
 
@@ -21,36 +23,51 @@ const getStyles = (props) => ({
 })
 
 class App extends Component {
+  state = {
+    open: false,
+  }
+
+  onOpenModal = () => {
+    this.setState({ open: true });
+  }
+
+  onCloseModal = () => {
+    this.setState({ open: false})
+  }
+
   render() {
     const styles = getStyles()
+    const { open } = this.state
     return (
-      <div className="App">
-        <Scrollable style={styles.root}>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-        </Scrollable>
-        <BottomBar style={styles.bar}/>
-
+      <div>
+        <button onClick={this.onOpenModal}>Open modal</button>
+        <Modal open={open} onClose={this.onCloseModal} center>
+          <Scrollable style={styles.root}>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+          </Scrollable>
+          <BottomBar style={styles.bar}/>
+        </Modal>
       </div>
     );
   }
