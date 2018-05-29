@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Modal from 'react-modal'
 import Scrollable from '../src/utilities/ScrollWrapper'
 import BottomBar from './components/BottomBar'
 
@@ -17,15 +18,42 @@ const getStyles = (props) => ({
     bottom: '0',
     backgroundColor: 'rgba(255,0,0,0.5)',
     minHeight: 100,
+  },
+  content : {
+    position: 'fixed',
+    top: '0',
+    right: '0',
+    bottom: '0',
+    left: '0'
   }
 })
 
 class App extends Component {
+  state = {
+    open: false,
+  }
+
+  onOpenModal = () => {
+    this.setState({ open: true });
+  }
+
+  onCloseModal = () => {
+    this.setState({ open: false });
+  }
+
   render() {
     const styles = getStyles()
+    const { open } = this.state
     return (
       <div className="App">
-        <Scrollable style={styles.root}>
+        <button onClick={this.onOpenModal}>Open modal</button>
+        <Modal
+          isOpen={open}
+          onRequestClose={this.onCloseModal}
+          style={styles.modal}
+          contentLabel="Example Modal"
+        >
+                  <Scrollable style={styles.root}>
           <h1>random text</h1>
           <h1>random text</h1>
           <h1>random text</h1>
@@ -50,6 +78,8 @@ class App extends Component {
           <h1>random text</h1>
         </Scrollable>
         <BottomBar style={styles.bar}/>
+        </Modal>
+
 
       </div>
     );
