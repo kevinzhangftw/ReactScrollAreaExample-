@@ -5,8 +5,9 @@ import Button from '@material-ui/core/Button'
 const getStyles = (props) => ({
   button: {
     position: 'absolute',
-    width: 'auto',
-    bottom: 30
+    width: '80%',
+    height: '60%',
+    bottom: 20
   }
 })
 
