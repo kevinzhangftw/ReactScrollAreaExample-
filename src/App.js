@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import Modal from 'react-modal'
-import Scrollable from '../src/utilities/ScrollWrapper'
 import BottomBar from './components/BottomBar'
 
 const getStyles = (props) => ({
-  root: {
-    padding: '0 20px 80px 20px',
-    position: 'absolute',
-    width: '100%'
+  parent: {
+    // overflow: 'hidden',
+    position: 'absolute'
   },
   bar: {
     position: 'fixed',
@@ -24,7 +22,7 @@ const getStyles = (props) => ({
       right: 0,
       bottom: 0,
       left:0,
-      backgroundColor: '#222'
+      backgroundColor: 'rgba(255,0,0,0.5)'
     }
   }
 })
@@ -42,16 +40,6 @@ class App extends Component {
     this.setState({ open: false })
   }
 
-  bottomBarAfterMount = () => {
-    console.log("bottomBarAfterMount")
-    //TODO: disable scrolling on parent...
-  }
-
-  bottomBarAfterUnmount = () => {
-    console.log("bottomBarAfterUnmount")
-    //TODO: disable scrolling on parent...
-  }
-
   onBottomBarButtonClick = () => {
     console.log("onBottomBarButtonClick")
     this.setState({
@@ -59,19 +47,24 @@ class App extends Component {
     })
   }
 
+  disableScroll = () => {
+    document.body.style.overflow = 'hidden'
+  }
+
   render() {
     const styles = getStyles()
     const { open } = this.state
+    // const scrollEnabled = !open
     return (
-      <div className="App">
+      <div style={styles.parent}>
         <button onClick={this.onOpenModal}>Open modal</button>
         <Modal
           isOpen={open}
           onRequestClose={this.onCloseModal}
           style={styles.modal}
           contentLabel="Example Modal"
+          onAfterOpen={this.disableScroll}
         >
-          <Scrollable style={styles.root}>
             <h1>random text</h1>
             <h1>random text</h1>
             <h1>random text</h1>
@@ -94,11 +87,8 @@ class App extends Component {
             <h1>random text</h1>
             <h1>random text</h1>
             <h1>random text</h1>
-          </Scrollable>
           <BottomBar
             style={styles.bar}
-            afterMount={this.bottomBarAfterMount}
-            afterUnount={this.bottomBarAfterUnmount}
             onButtonClick={this.onBottomBarButtonClick}/>
         </Modal>
         <h1>parent text</h1>
@@ -117,7 +107,9 @@ class App extends Component {
         <h1>parent text</h1>
         <h1>parent text</h1>
         <h1>parent text</h1>
-
+        <h1>parent text</h1>
+        <h1>parent text</h1>
+        <h1>parent text</h1>
       </div>
     );
   }

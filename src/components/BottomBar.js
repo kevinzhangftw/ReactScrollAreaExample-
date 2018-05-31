@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Toolbar from '@material-ui/core/Toolbar'
+// import Toolbar from '@material-ui/core/Toolbar'
 import Button from '@material-ui/core/Button'
 
 const getStyles = (props) => ({
@@ -12,10 +12,6 @@ const getStyles = (props) => ({
     minHeight: 100,
     bottom: 20
   },
-  bar: {
-    backgroundColor: 'rgba(255,0,0,0.5)',
-
-  }
 })
 
 class BottomBar extends Component {
@@ -50,6 +46,5 @@ class BottomBar extends Component {
   }
 
 }
-
 
 export default BottomBar
