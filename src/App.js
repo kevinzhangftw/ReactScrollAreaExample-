@@ -13,18 +13,19 @@ const getStyles = (props) => ({
     position: 'fixed',
     width: '100%',
     top: 'auto',
-    right: '0',
-    left: '0',
     bottom: '0',
     backgroundColor: 'rgba(255,0,0,0.5)',
     minHeight: 100,
   },
-  content : {
-    position: 'fixed',
-    top: '0',
-    right: '0',
-    bottom: '0',
-    left: '0'
+  modal: {
+    content : {
+      position: 'fixed',
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left:0,
+      backgroundColor: '#222'
+    }
   }
 })
 
@@ -34,11 +35,28 @@ class App extends Component {
   }
 
   onOpenModal = () => {
-    this.setState({ open: true });
+    this.setState({ open: true })
   }
 
   onCloseModal = () => {
-    this.setState({ open: false });
+    this.setState({ open: false })
+  }
+
+  bottomBarAfterMount = () => {
+    console.log("bottomBarAfterMount")
+    //TODO: disable scrolling on parent...
+  }
+
+  bottomBarAfterUnmount = () => {
+    console.log("bottomBarAfterUnmount")
+    //TODO: disable scrolling on parent...
+  }
+
+  onBottomBarButtonClick = () => {
+    console.log("onBottomBarButtonClick")
+    this.setState({
+      open: false
+    })
   }
 
   render() {
@@ -53,33 +71,52 @@ class App extends Component {
           style={styles.modal}
           contentLabel="Example Modal"
         >
-                  <Scrollable style={styles.root}>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-          <h1>random text</h1>
-        </Scrollable>
-        <BottomBar style={styles.bar}/>
+          <Scrollable style={styles.root}>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+            <h1>random text</h1>
+          </Scrollable>
+          <BottomBar
+            style={styles.bar}
+            afterMount={this.bottomBarAfterMount}
+            afterUnount={this.bottomBarAfterUnmount}
+            onButtonClick={this.onBottomBarButtonClick}/>
         </Modal>
-
+        <h1>parent text</h1>
+        <h1>parent text</h1>
+        <h1>parent text</h1>
+        <h1>parent text</h1>
+        <h1>parent text</h1>
+        <h1>parent text</h1>
+        <h1>parent text</h1>
+        <h1>parent text</h1>
+        <h1>parent text</h1>
+        <h1>parent text</h1>
+        <h1>parent text</h1>
+        <h1>parent text</h1>
+        <h1>parent text</h1>
+        <h1>parent text</h1>
+        <h1>parent text</h1>
+        <h1>parent text</h1>
 
       </div>
     );
