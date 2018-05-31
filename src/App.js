@@ -4,8 +4,10 @@ import BottomBar from './components/BottomBar'
 
 const getStyles = (props) => ({
   parent: {
-    // overflow: 'hidden',
-    position: 'absolute'
+    overflow: 'hidden',
+    position: 'absolute',
+    width: '100%',
+    height: '100%'
   },
   bar: {
     position: 'fixed',
@@ -32,19 +34,24 @@ class App extends Component {
     open: false,
   }
 
-  onOpenModal = () => {
+  handleOpenModal = () => {
     this.setState({ open: true })
   }
 
-  onCloseModal = () => {
+  handleCloseModal = () => {
     this.setState({ open: false })
   }
 
-  onBottomBarButtonClick = () => {
-    console.log("onBottomBarButtonClick")
+  handleBottomBarButtonClick = () => {
+    console.log("handleBottomBarButtonClick")
     this.setState({
       open: false
     })
+  }
+
+  stopPropagation = (e) => {
+    console.log('stopping propagation')
+    e.stopPropagation()
   }
 
   disableScroll = () => {
@@ -57,14 +64,21 @@ class App extends Component {
     // const scrollEnabled = !open
     return (
       <div style={styles.parent}>
-        <button onClick={this.onOpenModal}>Open modal</button>
+        <button onClick={this.handleOpenModal}>Open modal</button>
         <Modal
           isOpen={open}
-          onRequestClose={this.onCloseModal}
+          onRequestClose={this.handleCloseModal}
           style={styles.modal}
           contentLabel="Example Modal"
           onAfterOpen={this.disableScroll}
         >
+          <div
+            onClick={this.stopPropagation}
+            onTouchStart={this.stopPropagation}
+            onTouchMove={this.stopPropagation}
+            onScroll={this.stopPropagation}
+            ref={(r) => r.focus()}
+          >
             <h1>random text</h1>
             <h1>random text</h1>
             <h1>random text</h1>
@@ -89,7 +103,8 @@ class App extends Component {
             <h1>random text</h1>
           <BottomBar
             style={styles.bar}
-            onButtonClick={this.onBottomBarButtonClick}/>
+            onButtonClick={this.handleBottomBarButtonClick}/>
+          </div>
         </Modal>
         <h1>parent text</h1>
         <h1>parent text</h1>
